@@ -142,7 +142,7 @@ public class SimpleRagDoll {
         return node;
     }
 
-    private void join( DynamicPhysicsNode node1, DynamicPhysicsNode node2, Vector3f anchor, Vector3f direction, float min, float max ) {
+    public void join( DynamicPhysicsNode node1, DynamicPhysicsNode node2, Vector3f anchor, Vector3f direction, float min, float max ) {
         Joint joint = physicsSpace.createJoint();
         joint.attach( node1, node2 );
         joint.setAnchor( anchor );
