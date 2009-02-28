@@ -9,6 +9,7 @@ import com.jme.scene.Node;
 import com.jme.scene.TriMesh;
 import com.jme.scene.shape.Box;
 import com.jme.scene.shape.Capsule;
+import com.jmetest.physics.ragdoll.SimpleRagDoll;
 import com.jmex.physics.DynamicPhysicsNode;
 import com.jmex.physics.Joint;
 import com.jmex.physics.JointAxis;
@@ -29,8 +30,9 @@ import com.jmex.physics.PhysicsSpace;
  */
 public class WeaponCollection {
 
-    private Node weaponNode;
     private PhysicsSpace physicsSpace;
+    private DynamicPhysicsNode handle;
+    private DynamicPhysicsNode weaponStem;
     private DynamicPhysicsNode joinNode;
     public static final char WEAPON_SWORD = 0x1;
     public static final char WEAPON_CLUB = 0x2;
@@ -45,55 +47,37 @@ public class WeaponCollection {
     
     private char weaponType;
     
-    public WeaponCollection( PhysicsSpace physicsSpace, DynamicPhysicsNode joinNode ) {
+    public WeaponCollection( PhysicsSpace physicsSpace) {
     	this.physicsSpace = physicsSpace;
-    	this.joinNode = joinNode;
     }
 
     public void buildWeapon() {
-        DynamicPhysicsNode handle = physicsSpace.createDynamicNode();
-        weaponNode.attachChild( handle );
+    	Vector3f joinPosition = joinNode.getLocalTranslation();
+    	handle = physicsSpace.createDynamicNode();
         final Capsule handleCapsule = new Capsule( "handle", 9, 9, 9, .2f, .1f );
         
         handleCapsule.setModelBound( new BoundingBox() );
         handleCapsule.updateModelBound();
         handle.attachChild( handleCapsule );
         handle.generatePhysicsGeometry();
-        handle.getLocalTranslation().set( 0f, 0.1f, 0.4f );
+        // TODO Check weapon relative position to hand
+        handle.getLocalTranslation().set( joinPosition.x + -4.1999984f, joinPosition.y + 1f, joinPosition.z + 0.4f );
         // Handle -1.4901161E-8, Y=0.10000002, Z=0.4
         // Sword [X=-1.4901161E-8, Y=2.4999995, Z=0.4]
         
-        DynamicPhysicsNode weaponStem = null;
         switch (weaponType) {
 		case WEAPON_SWORD:
-			weaponStem = createNode( "sword", NODE_TYPE_CAPSULE, 0.2f, 4.05f, Vector3f.UNIT_Y, 0f, 2.5f, 0.4f );
+			weaponStem = createStem( "sword", NODE_TYPE_CAPSULE, 0.2f, 4.05f, Vector3f.UNIT_Y,joinPosition.x + -4.1999984f, joinPosition.y + handle.getLocalTranslation().y+2.5f,joinPosition.z + 0.4f );
 			break;
 
 		default:
 			break;
 		}
         
-                
-        Joint handleJoint = physicsSpace.createJoint();
-        handleJoint.attach( joinNode, handle );
-        handleJoint.setAnchor(joinNode.getLocalTranslation());
-        /*
-        JointAxis handleJointAxis = handleJoint.createTranslationalAxis();
-        handleJointAxis.setDirection( Vector3f.UNIT_Y );
-        handleJointAxis.setPositionMinimum( 0 );
-        handleJointAxis.setPositionMaximum( 0 );    
-        */
-        Joint stemJoint = physicsSpace.createJoint();
-        stemJoint.attach( handle, weaponStem );
-        stemJoint.setAnchor(handle.getLocalTranslation());
-        /*JointAxis neckJointAxis = stemJoint.createTranslationalAxis();
-        neckJointAxis.setDirection( Vector3f.UNIT_Y );
-        neckJointAxis.setPositionMinimum( 0);
-        neckJointAxis.setPositionMaximum( 0 );
-        */
+        this.join(handle, weaponStem, new Vector3f(0,0,0), new Vector3f(1,1,1), 1, 1);
     }
 
-    private DynamicPhysicsNode createNode( String name, char type, float radius, float height, Vector3f rotate90Axis,
+    private DynamicPhysicsNode createStem( String name, char type, float radius, float height, Vector3f rotate90Axis,
                                                       float x, float y, float z ) {
         DynamicPhysicsNode node = physicsSpace.createDynamicNode();
         TriMesh stem = null;
@@ -113,7 +97,6 @@ public class WeaponCollection {
         }
         node.generatePhysicsGeometry();
         node.getLocalTranslation().set( x, y, z );
-        weaponNode.attachChild( node );
         return node;
     }
 
@@ -127,12 +110,17 @@ public class WeaponCollection {
         leftShoulderAxis.setPositionMaximum( max );
     }
 
-    public Node getWeaponNode(char inputWeaponType) {
-    	// TODO Tarkista, pitää tehdä Node vai liitetäänkö suoraan valittuun nodeen?
-        TARKISTA weaponNode = new Node();
+    public void getWeaponNode(char inputWeaponType, DynamicPhysicsNode joinNode) {
         weaponType = inputWeaponType;
+        this.joinNode = joinNode;
         buildWeapon();
-        return weaponNode;
+    }
+    
+    public void joinWeapon(DynamicPhysicsNode join, Vector3f anchor, Vector3f direction, float min, float max){
+    	join.getParent().attachChild(handle);
+    	join.getParent().attachChild(weaponStem);
+    	
+    	this.join(join, handle, anchor, direction, min, max);
     }
 
 }

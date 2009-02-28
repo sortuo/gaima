@@ -393,14 +393,15 @@ public class Editor {
 					
 				case '1':
 					// Attach sword-weapon
-					WeaponCollection collection = new WeaponCollection(physicsSpace, getPickedNode());
-					Node sword = collection.getWeaponNode(WeaponCollection.WEAPON_SWORD);
-					sword.getLocalTranslation().y += 00;
-					getPickedNode().attachChild(sword);
-					getPickedNode().updateGeometricState( 0, false );
-					getPickedNode().updateModelBound();
+					WeaponCollection collection = new WeaponCollection(physicsSpace);
+					collection.getWeaponNode(WeaponCollection.WEAPON_SWORD,getPickedNode());
+					collection.joinWeapon(getPickedNode(), new Vector3f(0,0,0), new Vector3f(0.01f,0.01f,0.01f), 0, 0);
+					// no child attachment needed
+					//getPickedNode().attachChild(sword);
+					//getPickedNode().updateGeometricState( 0, false );
+					//getPickedNode().updateModelBound();
 					//getPickedNode().generatePhysicsGeometry();
-					getPickedNode().updateRenderState();
+					//getPickedNode().updateRenderState();
 					break;
 					
 				case 'w':

@@ -11,25 +11,35 @@ import com.jme.math.Vector3f;
 	 */
 	public class NeuroMovement {
 	    
-	    // Vector input
+	    // Neuron input for object position
 	    private static Vector3f	inputPositionVector = new Vector3f (0.5f,1.5f,2.5f);
 	    
-	    // Desired vector
+	    // Neuron input for object heading
+	    private static Vector3f	inputHeadingVector = new Vector3f (0.5f,1.5f,2.5f);
+
+	    // Neuron input for object velocity
+	    private double velocity;
+	    
+	    // Objects desired position
 	    private static Vector3f	desiredPositionVector = new Vector3f(1.0f,1.0f,1.0f);
 	    
-	    // XOR input
-	    private static double[][]	inputPosition = new double[][] {
-	        {inputPositionVector.x},
-	        {inputPositionVector.y},
-	        {inputPositionVector.z}
-	    };
+	    // Objects desired velocity
+	    private double desiredVelocity = 0;
+	     
+	    /**
+	     * Converts the input Vector3f to double[][] array.
+	     * @param inputVector
+	     * @return
+	     */
+	    public static double[][] getVector(Vector3f inputVector){
+	    	double [][] outputVector = new double[][]{{inputVector.x},{inputVector.y}, {inputVector.z}};
+	    	return outputVector;
+	    }
+	    
+	    private static double[][]	inputPosition = getVector(inputPositionVector);
 	    
 	    // XOR desired output
-	    private static double[][]	desiredPosition = new double[][] {
-	        {desiredPositionVector.x},
-	        {desiredPositionVector.y},
-	        {desiredPositionVector.z}
-	    };    
+	    private static double[][]	desiredPosition = getVector(desiredPositionVector);
 	    
 	    private static boolean singleThreadMode = true;
 	    /**
@@ -48,7 +58,7 @@ import com.jme.math.Vector3f;
 	            // Outputs the results every 200 epochs on the stardard output
 	            double rmse = JooneTools.train(nnet, inputPosition, desiredPosition,
 	                    5000, 0.01,
-	                    200, System.out, false);
+	                    1, System.out, false);
 	            
 	            // Waits in order to avoid the interlacing of the rows displayed
 	            try { Thread.sleep(50); } catch (InterruptedException doNothing) { }
