@@ -61,13 +61,15 @@ public class WeaponCollection {
         handle.attachChild( handleCapsule );
         handle.generatePhysicsGeometry();
         // TODO Check weapon relative position to hand
-        handle.getLocalTranslation().set( joinPosition.x + -4.1999984f, joinPosition.y + 1f, joinPosition.z + 0.4f );
+//      handle.getLocalTranslation().set( joinPosition.x + -0.1999984f, joinPosition.y + 1f, joinPosition.z + 0.4f );
+        handle.getLocalTranslation().set( joinPosition.x , joinPosition.y+0.5f , joinPosition.z  );
         // Handle -1.4901161E-8, Y=0.10000002, Z=0.4
         // Sword [X=-1.4901161E-8, Y=2.4999995, Z=0.4]
         
         switch (weaponType) {
 		case WEAPON_SWORD:
-			weaponStem = createStem( "sword", NODE_TYPE_CAPSULE, 0.2f, 4.05f, Vector3f.UNIT_Y,joinPosition.x + -4.1999984f, joinPosition.y + handle.getLocalTranslation().y+2.5f,joinPosition.z + 0.4f );
+//			weaponStem = createStem( "sword", NODE_TYPE_CAPSULE, 0.2f, 4.05f, Vector3f.UNIT_Y,joinPosition.x + -0.1999984f, joinPosition.y + handle.getLocalTranslation().y+0.5f,joinPosition.z + 0.4f );
+			weaponStem = createStem( "sword", NODE_TYPE_CAPSULE, 0.2f, 4.05f, Vector3f.UNIT_Y,joinPosition.x, joinPosition.y+3f,joinPosition.z );
 			break;
 
 		default:
