@@ -1,13 +1,9 @@
 package com.physicalneuro.util;
 
-import ragdoll.SimpleRagDoll;
-import ragdoll.TestSimpleRagDoll;
+import gamebase.PhysicalNeuroRun;
 import weapons.WeaponCollection;
 
-import com.jme.app.BaseGame;
-import com.jme.app.BaseSimpleGame;
 import com.jme.input.InputHandler;
-import com.jme.input.KeyInput;
 import com.jme.input.action.InputAction;
 import com.jme.input.action.InputActionEvent;
 import com.jme.intersection.PickData;
@@ -18,7 +14,6 @@ import com.jme.math.Vector3f;
 import com.jme.scene.Node;
 import com.jme.scene.Spatial;
 import com.jme.system.DisplaySystem;
-import com.jmetest.physics.SimplePhysicsTest;
 import com.jmex.physics.DynamicPhysicsNode;
 import com.jmex.physics.Joint;
 import com.jmex.physics.PhysicsCollisionGeometry;
@@ -60,19 +55,17 @@ public class Editor {
 	/**
 	 * joint to fix myNode in the world.
 	 */
+	private final Joint worldJoint;
 	
 	private final PhysicsSpace physicsSpace;
 	
-	private final Joint worldJoint;
 	private Editor.PickAction pickAction;
 	private Editor.MoveAction moveAction;
 	private Editor.EditAction editAction;
 	private InputHandler pickHandler;
-	private TestSimpleRagDoll baseGame;
+	private PhysicalNeuroRun baseGame;
 	private Boolean isEditorEnabled = true; 
 	
-	private Vector3f movement = new Vector3f(0,0,0);
-
 	/**
 	 * Constructor of the class.
 	 * 
@@ -84,7 +77,7 @@ public class Editor {
 	 *            physics space to create joints in (picked nodes must reside in
 	 *            there)
 	 */
-	public Editor(TestSimpleRagDoll baseGame, InputHandler input, Node rootNode, PhysicsSpace physicsSpace) {
+	public Editor(PhysicalNeuroRun baseGame, InputHandler input, Node rootNode, PhysicsSpace physicsSpace) {
 		this(baseGame, input, rootNode, physicsSpace, false);
 	}
 
@@ -101,7 +94,7 @@ public class Editor {
 	 * @param allowRotation
 	 *            true to allow rotation of the picked object
 	 */
-	public Editor(TestSimpleRagDoll baseGame, InputHandler input, Node rootNode, PhysicsSpace physicsSpace,
+	public Editor(PhysicalNeuroRun baseGame, InputHandler input, Node rootNode, PhysicsSpace physicsSpace,
 			boolean allowRotation) {
 		this.baseGame = baseGame;
 		this.physicsSpace = physicsSpace;
@@ -352,7 +345,6 @@ public class Editor {
 	 * 
 	 */
 	private class EditAction extends InputAction {
-		private final Vector3f anchor = new Vector3f();
 
 		public void performAction(InputActionEvent evt) {
 			char editChar = evt.getTriggerCharacter();
@@ -428,6 +420,10 @@ public class Editor {
 					
 				case 'f':
 					getPickedNode().getLocalTranslation().z += 0.1f;
+					break;
+					
+				case 'n':
+					baseGame.addNeuroContact(getPickedNode());
 					break;
 					
 				default:
