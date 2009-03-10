@@ -33,8 +33,10 @@ public class NeuroMovement extends NeuroMovementRandom {
 				movementNode.getLocalTranslation().y), new Vector2f(movementNode
 				.getLocalRotation().x, movementNode.getLocalRotation().y));
 		Vector2f newPosition = super.updateMovement();
+		movementNode.addForce(new Vector3f(-1*newPosition.x,-1*newPosition.y,0f));
+		movementNode.addTorque(new Vector3f(-1*newPosition.x,-1*newPosition.y,0f));
 
-//  	movementNode.setLocalTranslation(newPosition.x, newPosition.y, movementNode.getLocalTranslation().z);
+/*
 		if (null == helperNode){
 			helperNode = space.createDynamicNode();
 			helperNode.setAffectedByGravity(false);
@@ -54,7 +56,7 @@ public class NeuroMovement extends NeuroMovementRandom {
 		helperJointTo.attach(helperNode);
 
 		helperJointTo.attach(helperNode, movementNode);
-
+*/
 		System.out.println("Neuro update at " + System.currentTimeMillis()
 				+ ". Update position " + newPosition.toString());
 	}

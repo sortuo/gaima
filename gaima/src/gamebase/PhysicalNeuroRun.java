@@ -38,14 +38,19 @@ import ragdoll.SimpleRagDoll;
 
 import com.jme.app.AbstractGame;
 import com.jme.bounding.BoundingBox;
+import com.jme.bounding.BoundingSphere;
 import com.jme.input.InputHandler;
 import com.jme.input.KeyInput;
 import com.jme.input.MouseInput;
 import com.jme.input.action.InputAction;
 import com.jme.input.action.InputActionEvent;
 import com.jme.math.Vector3f;
+import com.jme.scene.Node;
 import com.jme.scene.Text;
 import com.jme.scene.shape.Box;
+import com.jme.scene.shape.Capsule;
+import com.jme.scene.shape.Sphere;
+import com.jmex.physics.DynamicPhysicsNode;
 import com.jmex.physics.StaticPhysicsNode;
 import com.physicalneuro.util.Editor;
 
@@ -102,7 +107,7 @@ public class PhysicalNeuroRun extends PhysicalNeuroGameHandler {
     }
 
     private void registerCreateRagDollAction() {
-        InputAction createAction = new InputAction() {
+        InputAction createRagdollAction = new InputAction() {
             public void performAction( InputActionEvent evt ) {
                 if ( evt == null || evt.getTriggerPressed() ) {
                     SimpleRagDoll sr2 = new SimpleRagDoll( getPhysicsSpace() );
@@ -113,9 +118,29 @@ public class PhysicalNeuroRun extends PhysicalNeuroGameHandler {
                 }
             }
         };
-        input.addAction( createAction, InputHandler.DEVICE_KEYBOARD, KeyInput.KEY_SPACE, InputHandler.AXIS_NONE, false );
-        createAction.performAction( null );
-    }
+        
+        InputAction createBallAction = new InputAction() {
+            public void performAction( InputActionEvent evt ) {
+                if ( evt == null || evt.getTriggerPressed() ) {
+                    DynamicPhysicsNode ball = getPhysicsSpace().createDynamicNode();
+                    Node ballNode = new Node();
+                    ballNode.attachChild( ball );
+                    final Sphere ballSphere = new Sphere( "ball", 12, 12, 0.5f );
+                    ballSphere.setModelBound( new BoundingSphere() );
+                    ballSphere.updateModelBound();
+                    ball.attachChild( ballSphere );
+                    ball.generatePhysicsGeometry();
+                    ball.getLocalTranslation().set( 0, .7f, 0 ); 
+                    rootNode.attachChild(ballNode); 
+                }
+            }
+        };
+        
+        input.addAction( createRagdollAction, InputHandler.DEVICE_KEYBOARD, KeyInput.KEY_SPACE, InputHandler.AXIS_NONE, false );
+        createRagdollAction.performAction( null );
+
+        input.addAction( createBallAction, InputHandler.DEVICE_KEYBOARD, KeyInput.KEY_0, InputHandler.AXIS_NONE, false );
+}
 
     public static void main( String[] args ) {
         Logger.getLogger( "" ).setLevel( Level.WARNING );
