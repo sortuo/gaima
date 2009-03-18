@@ -6,7 +6,7 @@ import com.jmex.physics.DynamicPhysicsNode;
 import com.jmex.physics.Joint;
 import com.jmex.physics.PhysicsSpace;
 
-public class NeuroMovement extends NeuroMovementRandom {
+public class NeuroMovement extends NeuroMovement3d {
 
 	private DynamicPhysicsNode movementNode;
 	
@@ -26,16 +26,13 @@ public class NeuroMovement extends NeuroMovementRandom {
 
 	public void updateNetwork(PhysicsSpace space) {
 		if (null == getDesiredPosition()){
-			super.setDesiredPosition(new Vector2f(movementNode.getLocalTranslation().x,
-				movementNode.getLocalTranslation().y));
+			super.setDesiredPosition(movementNode.getLocalTranslation());
 		}
-		super.setNeuroMovement(new Vector2f(movementNode.getLocalTranslation().x,
-				movementNode.getLocalTranslation().y), new Vector2f(movementNode
-				.getLocalRotation().x, movementNode.getLocalRotation().y));
-		Vector2f newPosition = super.updateMovement();
-		movementNode.addForce(new Vector3f(-1*newPosition.x,-1*newPosition.y,0f));
-		movementNode.addTorque(new Vector3f(-1*newPosition.x,-1*newPosition.y,0f));
-
+		super.setNeuroMovement(movementNode.getLocalTranslation(),/*rotation not in use*/null);
+		Vector3f newPosition = super.updateMovement();
+		movementNode.addForce(new Vector3f(-1*newPosition.x,-1*newPosition.y,-1*newPosition.z));
+		//movementNode.addTorque(new Vector3f(-1*newPosition.x,-1*newPosition.y,0f));
+		
 /*
 		if (null == helperNode){
 			helperNode = space.createDynamicNode();
