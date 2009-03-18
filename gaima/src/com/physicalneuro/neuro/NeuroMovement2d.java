@@ -21,7 +21,7 @@ import com.physicalneuro.util.NeuroUtil;
 	 * 
 	 * @author T8TSOSO
 	 */
-	public class NeuroMovement2d implements NeuroMovementInterface{
+	public class NeuroMovement2d {
 	    
 	    // Neuron input for object position
 	    private Vector2f	inputPositionVector = new Vector2f (0.5f,1.5f);
@@ -85,7 +85,7 @@ import com.physicalneuro.util.NeuroUtil;
 	        } catch (Exception exc) { exc.printStackTrace(); }
 	    }
 */
-		@Override
+		
 		public void setNeuroMovement(Vector2f movement, Vector2f heading ) {
 			this.inputPositionVector = movement;
 			this.inputHeadingVector = heading;
@@ -93,17 +93,17 @@ import com.physicalneuro.util.NeuroUtil;
 			network.getMonitor().setSingleThreadMode(singleThreadMode);
 		}
 
-		@Override
+		
 		public Vector2f getMovement() {
 			return inputPositionVector;
 		}
 
-		@Override
+		
 		public void setMovement(Vector2f movement) {
 			this.inputPositionVector = movement;
 		}
 
-		@Override
+		
 		public Vector2f updateMovement() {
 			inputPosition =  NeuroUtil.getVector(inputPositionVector);
 			desiredPosition = NeuroUtil.getVector(desiredPositionVector);
@@ -130,13 +130,13 @@ import com.physicalneuro.util.NeuroUtil;
             return inputPositionVector;
 		}
 
-		@Override
+		
 		public void setDesiredPosition(Vector2f position) {
 			this.desiredPositionVector = position;
 			
 		}
 
-		@Override
+		
 		public Vector2f getDesiredPosition() {
 			return desiredPositionVector;
 		}

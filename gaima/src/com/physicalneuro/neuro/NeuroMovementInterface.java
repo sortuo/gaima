@@ -4,16 +4,16 @@ import com.jme.math.Vector2f;
 
 public interface NeuroMovementInterface {
 	
-	public void setNeuroMovement(Vector2f movement, Vector2f heading);
+	public void setNeuroMovement(Object movement, Object heading);
 
-	public Vector2f getMovement();
+	public Object getMovement();
 	
-	public void setMovement(Vector2f movement);
+	public void setMovement(Object movement);
 	
-	public Vector2f updateMovement();
+	public Object updateMovement();
 	
-	public void setDesiredPosition(Vector2f position);
+	public void setDesiredPosition(Object position);
 	
-	public Vector2f getDesiredPosition();
+	public Object getDesiredPosition();
 	
 }

@@ -6,18 +6,18 @@ import java.util.logging.Logger;
 import com.jmex.physics.DynamicPhysicsNode;
 import com.jmex.physics.PhysicsSpace;
 import com.physicalneuro.neuro.NeuroMovement;
-import com.physicalneuro.neuro.NeuroMovement2d;
+import com.physicalneuro.neuro.NeuroMovement3d;
 
 public abstract class PhysicalNeuroControl extends PhysicalNeuroGame {
 
-	private NeuroMovement2d neuroMovement;
+	private NeuroMovement3d neuroMovement;
 
 	@Override
 	protected void update(float interpolation) {
 		super.update(interpolation);
 
 		if (null == neuroMovement) {
-			neuroMovement = new NeuroMovement2d();
+			neuroMovement = new NeuroMovement3d();
 		}
 
 		if (!pause) {

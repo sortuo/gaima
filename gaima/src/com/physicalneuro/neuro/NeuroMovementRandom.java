@@ -16,12 +16,12 @@ import com.physicalneuro.util.NeuroUtil;
 	 *             x                                      X                                           
 	 *  y          x         y2                           X                                           
 	 *                                                    X             
-	 * Randomise all movements.                               
+	 * Randomize all movements.                               
 	 * </pre>
 	 * 
 	 * @author T8TSOSO
 	 */
-	public class NeuroMovementRandom implements NeuroMovementInterface{
+	public class NeuroMovementRandom {
 	    
 	    // Neuron input for object position
 	    private Vector2f	inputPositionVector;
@@ -53,7 +53,7 @@ import com.physicalneuro.util.NeuroUtil;
 	    public NeuroMovementRandom() {
 	    }
 
-		@Override
+		
 		public void setNeuroMovement(Vector2f movement, Vector2f heading ) {
 			this.inputPositionVector = movement;
 			this.inputHeadingVector = heading;
@@ -61,17 +61,17 @@ import com.physicalneuro.util.NeuroUtil;
 			network.getMonitor().setSingleThreadMode(singleThreadMode);
 		}
 
-		@Override
+		
 		public Vector2f getMovement() {
 			return inputPositionVector;
 		}
 
-		@Override
+		
 		public void setMovement(Vector2f movement) {
 			this.inputPositionVector = movement;
 		}
 
-		@Override
+		
 		public Vector2f updateMovement() {
 			inputPosition =  NeuroUtil.getVector(inputPositionVector);
 			desiredPosition = NeuroUtil.getVector(desiredPositionVector);
@@ -98,13 +98,13 @@ import com.physicalneuro.util.NeuroUtil;
             return inputPositionVector;
 		}
 
-		@Override
+		
 		public void setDesiredPosition(Vector2f position) {
 			this.desiredPositionVector = position;
 			
 		}
 
-		@Override
+		
 		public Vector2f getDesiredPosition() {
 			return desiredPositionVector;
 		}
