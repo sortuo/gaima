@@ -7,7 +7,7 @@ General discussion about Gaima project - ask just about anything.. joining the p
 = Details =
 Gaima uses libraries from these projects
 
-Java Monkey Engine Physics
+jME Physics 2 - physics abstraction layer for the jMonkey Engine 
  http://code.google.com/p/jmephysics/
 
 Java Object Oriented Neural Engine
