@@ -1,0 +1,14 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+General discussion about Gaima project - ask just about anything.. joining the project or how to setup the project.
+
+= Details =
+Gaima uses libraries from these projects
+
+Java Monkey Engine Physics
+ http://code.google.com/p/jmephysics/
+
+Java Object Oriented Neural Engine
+ http://www.jooneworld.com/
