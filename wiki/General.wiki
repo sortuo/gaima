@@ -14,4 +14,6 @@ Java Monkey Engine
  http://www.jmonkeyengine.com/
 
 Java Object Oriented Neural Engine
- http://www.jooneworld.com/
+ http://www.jooneworld.com/ (Currently DOWN)
+
+ JOONE 2.0.0 http://sourceforge.net/projects/joone
