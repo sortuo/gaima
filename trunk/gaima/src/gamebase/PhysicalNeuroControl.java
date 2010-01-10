@@ -1,6 +1,8 @@
 package gamebase;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import com.jmex.physics.DynamicPhysicsNode;
@@ -34,7 +36,7 @@ public abstract class PhysicalNeuroControl extends PhysicalNeuroGame {
 		}
 	}
 
-	private ArrayList<NeuroMovement> neuroContacts = new ArrayList<NeuroMovement>();
+	private Set<NeuroMovement> neuroContacts = new HashSet<NeuroMovement>();
 	
 	public void updateNeuroContacts() {
 		for (NeuroMovement neuroObject : neuroContacts) {
@@ -45,7 +47,7 @@ public abstract class PhysicalNeuroControl extends PhysicalNeuroGame {
 
 	public void addNeuroContact(DynamicPhysicsNode neuroObject) {
 		NeuroMovement newContact = new NeuroMovement();
-		newContact.setObject(neuroObject);
+		newContact.setObject(neuroObject, 1000);
 		neuroContacts.add(newContact);
 
 	}
