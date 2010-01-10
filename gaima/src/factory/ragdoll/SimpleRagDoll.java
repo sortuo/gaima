@@ -29,7 +29,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package ragdoll;
+package factory.ragdoll;
 
 import com.jme.bounding.BoundingBox;
 import com.jme.bounding.BoundingSphere;
@@ -69,6 +69,7 @@ public class SimpleRagDoll {
 
     public void buildRagdoll() {
         DynamicPhysicsNode head = physicsSpace.createDynamicNode();
+        head.setName("head");
         ragdollNode.attachChild( head );
         final Capsule headCapsule = new Capsule( "head", 9, 9, 9, .4f, .4f );
         headCapsule.setModelBound( new BoundingSphere() );
@@ -128,6 +129,7 @@ public class SimpleRagDoll {
     private DynamicPhysicsNode createNodeWithCapsule( String name, float radius, float height, Vector3f rotate90Axis,
                                                       float x, float y, float z ) {
         DynamicPhysicsNode node = physicsSpace.createDynamicNode();
+        node.setName(name);
         final Capsule capsule = new Capsule( name, 9, 9, 9, radius, height );
         capsule.setModelBound( new BoundingBox() );
         capsule.updateModelBound();

@@ -1,7 +1,7 @@
-package com.physicalneuro.util;
+package com.physicalneuro.input;
 
 import gamebase.PhysicalNeuroRun;
-import weapons.WeaponCollection;
+import factory.weapons.WeaponCollection;
 
 import com.jme.input.InputHandler;
 import com.jme.input.action.InputAction;
@@ -23,23 +23,16 @@ import com.jmex.physics.contact.ContactInfo;
 import com.jmex.physics.geometry.PhysicsRay;
 
 /**
- * Editor class for physics and jme objects.
+ * Actions for physical objects.
  * 
  * <pre>
- * TODO Text input handler for file names 
- * TODO Save object to file 
- * TODO Load object from file 
- * TODO Add parent and child objects 
- * TODO Add Joints 
- * TODO Group objects 
- * TODO Edit Breakable joints
- * TODO Edit Scale additions
+
  * </pre>
  * 
  * @author T8TSOSO
  * 
  */
-public class Editor {
+public class PhysicAction {
 	/**
 	 * root node of the scene - used for picking.
 	 */
@@ -59,9 +52,9 @@ public class Editor {
 	
 	private final PhysicsSpace physicsSpace;
 	
-	private Editor.PickAction pickAction;
-	private Editor.MoveAction moveAction;
-	private Editor.EditAction editAction;
+	private PhysicAction.PickAction pickAction;
+	private PhysicAction.MoveAction moveAction;
+	private PhysicAction.EditAction editAction;
 	private InputHandler pickHandler;
 	private PhysicalNeuroRun baseGame;
 	private Boolean isEditorEnabled = true; 
@@ -77,7 +70,7 @@ public class Editor {
 	 *            physics space to create joints in (picked nodes must reside in
 	 *            there)
 	 */
-	public Editor(PhysicalNeuroRun baseGame, InputHandler input, Node rootNode, PhysicsSpace physicsSpace) {
+	public PhysicAction(PhysicalNeuroRun baseGame, InputHandler input, Node rootNode, PhysicsSpace physicsSpace) {
 		this(baseGame, input, rootNode, physicsSpace, false);
 	}
 
@@ -94,7 +87,7 @@ public class Editor {
 	 * @param allowRotation
 	 *            true to allow rotation of the picked object
 	 */
-	public Editor(PhysicalNeuroRun baseGame, InputHandler input, Node rootNode, PhysicsSpace physicsSpace,
+	public PhysicAction(PhysicalNeuroRun baseGame, InputHandler input, Node rootNode, PhysicsSpace physicsSpace,
 			boolean allowRotation) {
 		this.baseGame = baseGame;
 		this.physicsSpace = physicsSpace;
@@ -426,6 +419,10 @@ public class Editor {
 					baseGame.addNeuroContact(getPickedNode());
 					break;
 					
+				case '?':
+					System.out.println("Node name: "+getPickedNode());
+					break;
+
 				default:
 					break;
 				}

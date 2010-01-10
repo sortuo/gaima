@@ -1,4 +1,4 @@
-package weapons;
+package factory.weapons;
 
 
 import com.jme.bounding.BoundingBox;

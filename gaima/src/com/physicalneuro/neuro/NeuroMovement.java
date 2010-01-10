@@ -16,21 +16,31 @@ public class NeuroMovement extends NeuroMovement3d {
 
 	private DynamicPhysicsNode helperNode;
 	
+	private long lastUpdate = 0;
+	
+	private long updateRate;
+	
 	public DynamicPhysicsNode getObject() {
 		return movementNode;
 	}
 
-	public void setObject(DynamicPhysicsNode object) {
+	public void setObject(DynamicPhysicsNode object, long updateRate) {
 		this.movementNode = object;
+		this.updateRate = updateRate;
 	}
 
 	public void updateNetwork(PhysicsSpace space) {
 		if (null == getDesiredPosition()){
 			super.setDesiredPosition(movementNode.getLocalTranslation());
 		}
-		super.setNeuroMovement(movementNode.getLocalTranslation(),/*rotation not in use*/null);
-		Vector3f newPosition = super.updateMovement();
-		movementNode.addForce(new Vector3f(-1*newPosition.x,-1*newPosition.y,-1*newPosition.z));
+		if (System.currentTimeMillis() - lastUpdate > updateRate){
+			super.setNeuroMovement(movementNode.getLocalTranslation(),/*rotation not in use*/null);
+			Vector3f newPosition = super.updateMovement();
+			movementNode.addForce(new Vector3f(-1*newPosition.x,-1*newPosition.y,-1*newPosition.z));
+			System.out.println("Neuro update at " + System.currentTimeMillis()
+					+ ". Update position " + newPosition.toString());
+		}
+		lastUpdate = System.currentTimeMillis();
 		//movementNode.addTorque(new Vector3f(-1*newPosition.x,-1*newPosition.y,0f));
 		
 /*
@@ -54,7 +64,5 @@ public class NeuroMovement extends NeuroMovement3d {
 
 		helperJointTo.attach(helperNode, movementNode);
 */
-		System.out.println("Neuro update at " + System.currentTimeMillis()
-				+ ". Update position " + newPosition.toString());
 	}
 }
