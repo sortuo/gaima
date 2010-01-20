@@ -17,7 +17,7 @@ Example images
 
 [http://gaima.googlecode.com/svn/trunk/gaima/Fractal%20images/Fractal%20background.jpg Fractal background]
 
-[http://code.google.com/p/gaima/source/browse/trunk/gaima/Fractal+images/Fractal+dripping+stones+1.jpg Dripping Matrixes 1]
+[http://gaima.googlecode.com/svn/trunk/gaima/Fractal%20images/Fractal%20dripping%20stones%201.jpg Dripping Matrixes 1]
 [http://gaima.googlecode.com/svn/trunk/gaima/Fractal%20images/Fractal%20dripping%20stones%202.jpg Dripping Matrixes 2]
 
 [http://gaima.googlecode.com/svn/trunk/gaima/Fractal%20images/Fractal%20eclipse%201.jpg Fractal Eclipse 1]
