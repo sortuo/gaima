@@ -1,4 +1,5 @@
 #summary Very Large Fractal Images
+#labels fractal
 
 = Introduction =
 
@@ -23,6 +24,7 @@ Example images
 [http://gaima.googlecode.com/svn/trunk/gaima/Fractal%20images/Fractal%20eclipse%202.jpg Fractal Eclipse 2]
 [http://gaima.googlecode.com/svn/trunk/gaima/Fractal%20images/Fractal%20eclipse%203.jpg Fractal Eclipse 3]
 [http://gaima.googlecode.com/svn/trunk/gaima/Fractal%20images/Fractal%20eclipse%204.jpg Fractal Eclipse 4]
+
 [http://gaima.googlecode.com/svn/trunk/gaima/Fractal%20images/Fractal%20pointers%201.jpg Fractal pointers]
 
-[http://gaima.googlecode.com/svn/trunk/gaima/Fractal%20images/Fractal%20spirals.jpg Fractal Eclipse 1]
+[http://gaima.googlecode.com/svn/trunk/gaima/Fractal%20images/Fractal%20spirals.jpg Fractal spirals]
