@@ -1,0 +1,11 @@
+#summary Very Large Fractal Images
+
+= Introduction =
+
+Source also includes tiny source for very large fractal image drawing.
+
+
+= Details =
+
+Source is located in following file
+http://gaima.googlecode.com/svn/trunk/gaima/src/cellularAutomata/TestFractal_2ScreenSave.java
