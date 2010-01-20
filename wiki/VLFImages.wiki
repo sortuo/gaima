@@ -3,7 +3,7 @@
 
 = Introduction =
 
-Source also includes tiny source for very large fractal image drawing.
+Gaima source also includes a small Java source code for very large fractal image drawing.
 
 
 = Details =
