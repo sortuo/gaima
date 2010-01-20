@@ -11,7 +11,7 @@ Source is located in following file
 http://gaima.googlecode.com/svn/trunk/gaima/src/cellularAutomata/TestFractal_2ScreenSave.java
 
 Example images
-http://gaima.googlecode.com/svn/trunk/gaima/Fractal%20images/Double%20eclipse.jpg
+[http://gaima.googlecode.com/svn/trunk/gaima/Fractal%20images/Double%20eclipse.jpg]
 http://gaima.googlecode.com/svn/trunk/gaima/Fractal%20images/Fractal%20background.jpg
 http://code.google.com/p/gaima/source/browse/trunk/gaima/Fractal+images/Fractal+dripping+stones+1.jpg
 http://gaima.googlecode.com/svn/trunk/gaima/Fractal%20images/Fractal%20dripping%20stones%202.jpg
