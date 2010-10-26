@@ -17,6 +17,8 @@ Source is located in following files
 [http://code.google.com/p/gaima/source/browse/trunk/gaima/src/fractal/BuildFractal.java BuildFractal.java] and
 [http://code.google.com/p/gaima/source/browse/trunk/gaima/src/fractal/Fractal.java Fractal.java]
 
+If you want to check out the repository only for this project leave the lib folder out.
+
 Example images
 
 [http://code.google.com/p/gaima/source/browse/trunk/gaima/Fractal%20images/Fractal%20Mandelbrot.jpg Mandelbrot in blue]
