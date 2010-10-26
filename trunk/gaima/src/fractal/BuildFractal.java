@@ -39,6 +39,12 @@ public class BuildFractal {
 	private static Logger log = Logger.getLogger("fractal.buildfractal");
 	private static FileHandler fh;
 
+	/**
+	 * The main method where program starts.
+	 * Opens and appends to log hander file.
+	 * @param args command line parameters
+	 * @throws Exception errors from log handling
+	 */
 	public static void main(String[] args) throws Exception {
 		// Append to logger.
 		fh = new FileHandler("fractal.log", true);
@@ -48,6 +54,11 @@ public class BuildFractal {
 		new BuildFractal();
 	}
 
+	/**
+	 * Setups the command line parameters.
+	 * Shows usage if parameters are not correct and uses default parameters.
+	 * @param args command line parameters
+	 */
 	public static void setup(String[] args) {
 		long now = System.currentTimeMillis();
 		String allRules = "";
@@ -58,6 +69,7 @@ public class BuildFractal {
 			if (args.length > 0) {
 				width = Integer.parseInt((args[0]));
 				height = Integer.parseInt((args[1]));
+				// add the timestamp to filename
 				imgName = args[2] + "_" + now;
 				// Iterate rule-arguments and add them to list
 				for (int i = 3; i < args.length; i++) {
@@ -77,10 +89,16 @@ public class BuildFractal {
 			runmessage += " [" + s + "]";
 		}
 
+		// add the logmessage and timestamp of parameters
 		log.log(Level.INFO, "Run parameters" + runmessage + " [" + now + "]");
 
 	}
 
+	/**
+	 * Builds the fractal. 
+	 * Draws the fractal on screen. 
+	 * Writes the fractal to image.
+	 */
 	public BuildFractal() {
 
 		pix = new int[width * height];
