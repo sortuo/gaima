@@ -87,8 +87,7 @@ public class BuildFractal {
 		int index = 0;
 		for (int y = hOffset; y < height + hOffset; y++) {
 			for (int x = wOffset; x < width + wOffset; x++) {
-				pix[index] = Fractal.countVariable(x, y, 0xFF000000,
-						variablesCollection);
+				pix[index] = Fractal.countVariable(x, y, 0xFF000000, variablesCollection);
 				// pix[index] = Fractal.countDrippingMatrix(x, y);
 				index++;
 			}
@@ -112,7 +111,6 @@ public class BuildFractal {
 		});
 		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width / 2,
 				Toolkit.getDefaultToolkit().getScreenSize().height / 2);
-		frame.setVisible(true);
 
 		file = new File(imgName + ".jpg");
 		try {
@@ -121,6 +119,8 @@ public class BuildFractal {
 			e.printStackTrace();
 		}
 
+		frame.setVisible(true);
+		
 		while (file.canRead() == false) {
 
 		}
