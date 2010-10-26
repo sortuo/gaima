@@ -5,17 +5,20 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * @author ts
+ * Fractals are created with this Fractal class and different rules are stated
+ * with Enum Rules or by calling methods. You can combine different rules with
+ * the proram parameters. 0xFF000000 is the base blue color for images.
  * 
- * Fractals are created with this Fractal class and different rules are stated with Enum Rules or by calling methods. 
- * You can combine different rules with the proram parameters.
- * 0xFF000000 is the base blue color for images.
- *
+ * Mandelbrot code is based on pseudocode located here:
+ * http://en.wikipedia.org/wiki/Mandelbrot_set
+ * 
+ * @author sortuo
+ * 
  */
 public class Fractal {
 
 	/**
-	 * @author sortuo Rules for fractal generation.
+	 * Rules for fractal generation.
 	 */
 	public enum Rules {
 		ABS, SQRT, TAN, COS, TEST1, TEST2, TEST3, TEST4, DRIPPINGMATRIX, MANDELBROT, MANDELBROT_MOD1, MANDELBROT_BLACKLAGOON
@@ -45,6 +48,19 @@ public class Fractal {
 		return Fractal.countVariable(x, y, 0xFF000000, c);
 	}
 
+	/**
+	 * Calculates the results for a collection of different rules.
+	 * 
+	 * @param x
+	 *            image x pixel
+	 * @param y
+	 *            image y pixel
+	 * @param offset
+	 *            the base offset (base color) of the calculation
+	 * @param variables
+	 *            collection of different Rules
+	 * @return returns the calculated int value (color) calculated by the rules
+	 */
 	public static int countVariable(int x, int y, int offset,
 			Collection<Rules> variables) {
 		int result = 0;
@@ -54,6 +70,19 @@ public class Fractal {
 		return offset + result;
 	}
 
+	/**
+	 * Calculates specified Rule for pixel and return the color value.
+	 * 
+	 * @param x
+	 *            image x pixel
+	 * @param y
+	 *            image y pixel
+	 * @param r
+	 *            enumeration of specifien Rule
+	 * @param offset
+	 *            the base offset (base color) of the calculation
+	 * @return returns the calculated int value (color) of calculation
+	 */
 	public static int countWithEnum(int x, int y, Rules r, int offset) {
 		int result = offset;
 		switch (r) {
@@ -115,7 +144,6 @@ public class Fractal {
 		case MANDELBROT_MOD1:
 			int blue = Color.blue.getRGB();
 			int green = Color.green.getRGB();
-			int red = Color.red.getRGB();
 
 			result = green / 2;
 			x0 = -2 + (x / (BuildFractal.width * 0.37)); // 3.5 total
