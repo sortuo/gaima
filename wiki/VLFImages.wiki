@@ -11,9 +11,9 @@ Run it with command (when the JAR is in the same directory)
 {{{
 java -Xmx1500M -jar BuildFractal.jar 10000 10000 default MANDELBROT
 }}}
-You can also combine the rule parameters like this
+You can also combine the rule parameters like this (see first image below)
 {{{
-java -Xmx1500M -jar BuildFractal.jar 1000 1000 default MANDELBROT MANDELBROT_BLACKLAGOON
+java -Xmx1500M -jar BuildFractal.jar 1000 1000 default MANDELBROT MANDELBROT_BLACKLAGOON 
 java -Xmx1500M -jar BuildFractal.jar 1000 1000 default COS SQRT TAN COS SIN
 }}}
 = Details =
@@ -28,6 +28,7 @@ Example images
 
 [http://code.google.com/p/gaima/source/browse/trunk/gaima/Fractal%20images/Fractal%20Mandelbrot.jpg Mandelbrot in blue]
 [http://code.google.com/p/gaima/source/browse/trunk/gaima/Fractal%20images/Fractal%20Mandelbrot%20TAN.jpg Mandelbrot with inner lines]
+[http://code.google.com/p/gaima/source/browse/trunk/gaima/Fractal%20images/Fractal%20Mandelbrot%20in%20black%20lagoon_1288085660422.jpg Mr. Mandelbrot in the Black lagoon]
 
 [http://gaima.googlecode.com/svn/trunk/gaima/Fractal%20images/Fractal%20dripping%20stones%201.jpg Dripping Matrixes 1]
 [http://gaima.googlecode.com/svn/trunk/gaima/Fractal%20images/Fractal%20dripping%20stones%202.jpg Dripping Matrixes 2]
