@@ -1,0 +1,13 @@
+Tutorial of very large Image creator and fractals. Tutorial includes example of Mandelbrot fractal.
+
+This tutorial shows a nice way to create very lage images (10000x10000=100M pixels or more if you have enough memory).
+
+In the code there is the main class BuildFractal setup() that handles the inputs for the program and uses Enum. Program creates the fractal on an array pix[] and draws the image on Frame with BufferedImage and then writes the BufferedImage to a file.
+
+Fractals are created with Fractal class and different rules are stated with Enums or by calling methods. You can combine different rules with the proram parameters.
+
+The program writes the fractal.log file so if you create a good image you can use the image timestamp (imagename_timestamp.jpg) to find the parameters from the log file.
+
+You are free to explore the code and try out different calculations and fractals. And if you happend to find nice images please share the code to this repository and send the images so I can upload them here for public visibility.
+
+
