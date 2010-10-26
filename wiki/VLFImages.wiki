@@ -7,7 +7,7 @@ Gaima source also includes a small Java source code for very large fractal image
 
 You can try out the program with this JAR file http://gaima.googlecode.com/files/BuildFractal.jar
 
-Download [http://java.sun.com/javase/downloads Java JDK5] or 6 and the [http://gaima.googlecode.com/files/BuildFractal.jar BuildFractal.jar] file.
+Download [http://java.sun.com/javase/downloads Java JDK 5] or 6 and the [http://gaima.googlecode.com/files/BuildFractal.jar BuildFractal.jar] file.
 Run it with command (when the JAR is in the same directory)
 {{{
 java -Xmx1500M -jar BuildFractal.jar 10000 10000 default MANDELBROT
